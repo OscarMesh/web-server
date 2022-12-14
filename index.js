@@ -1,6 +1,7 @@
 const http = require("http");
 
 const PORT = 3000;
+const server = http.createServer();
 const friends = [
   {
     id: 0,
@@ -15,8 +16,9 @@ const friends = [
     name: "Jack",
   },
 ];
-const server = http.createServer((req, res) => {
-  let items = req.url.split("/");
+
+server.on("request", (req, res) => {
+  const items = req.url.split("/");
 
   if (items[1] === "friends") {
     res.statusCode = 200;
